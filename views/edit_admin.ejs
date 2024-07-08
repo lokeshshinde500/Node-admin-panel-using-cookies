@@ -1,0 +1,159 @@
+<%- include("header")%>
+
+
+
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>EDIT ADMIN</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="/admin/update/?id=<%=editRecord.id%>" method="post"
+                                enctype="multipart/form-data" class="form-horizontal">
+                                <%const name=editRecord.name.split(" ")%>
+                                    <div class=" row form-group">
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Enter
+                                            first
+                                            Name</label></div>
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="firstName"
+                                            value="<%=name[0]%>" placeholder="First Name" class="form-control"></div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Enter
+                                    last
+                                    Name</label></div>
+                            <div class="col-12 col-md-9"><input type="text" id="text-input" name="lastName"
+                                    value="<%=name[1]%>" placeholder="Last Name" class="form-control"></div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="email-input" class=" form-control-label">Enter
+                                    Email</label></div>
+                            <div class="col-12 col-md-9"><input type="email" id="email-input" name="email"
+                                    value="<%=editRecord.email%>" placeholder="Enter Email" class="form-control"></div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="textarea-input"
+                                    class=" form-control-label">comment</label></div>
+                            <div class="col-12 col-md-9"><textarea name="comment" id="textarea-input"
+                                    placeholder="write comment..."
+                                    class="form-control"><%=editRecord.comment%></textarea></div>
+                        </div>
+
+                        <%const city=["surat","rajkot","ahemdabad","navsari"]%>
+                            <div class="row form-group">
+                                <div class="col col-md-3"><label for="select" class=" form-control-label">Select
+                                        city</label></div>
+                                <div class="col-12 col-md-9">
+                                    <select name="city" id="select" class="form-control">
+                                        <option>--select city--</option>
+                                        <%city.forEach((v,i)=>{ %>
+                                            <option value="<%=v%>" <%if(editRecord.city==v){%>
+                                                <%="selected"%>
+                                                    <%}%> >
+                                                        <%=v%>
+                                            </option>
+                                            <% })%>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3"><label class=" form-control-label">select
+                                        Gender</label>
+                                </div>
+                                <div class="col col-md-9">
+                                    <div class="form-check-inline form-check">
+                                        <label for="inline-radio1" class="form-check-label mr-2 ">
+                                            <input type="radio" id="inline-radio1" name="gender"
+                                                <%if(editRecord.gender=="male" ){%>
+                                            <%="checked"%>
+                                                <%}%> value="male"
+                                                    class="form-check-input">Male
+                                        </label>
+                                        <label for="inline-radio2" class="form-check-label mr-2 ">
+                                            <input type="radio" id="inline-radio2" name="gender" value="female"
+                                                <%if(editRecord.gender=="female" ){%>
+                                            <%="checked"%>
+                                                <%}%>
+                                                    class="form-check-input">Female
+                                        </label>
+                                        <label for="inline-radio3" class="form-check-label mr-2 ">
+                                            <input type="radio" id="inline-radio3" name="gender" value="other"
+                                                <%if(editRecord.gender=="other" ){%>
+                                            <%="checked"%>
+                                                <%}%>
+                                                    class="form-check-input">Other
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3"><label class=" form-control-label">Hobby</label>
+                                </div>
+                                <div class="col col-md-9">
+                                    <div class="form-check-inline form-check">
+                                        <label for="inline-checkbox1" class="form-check-label mr-2 ">
+                                            <input type="checkbox" id="inline-checkbox1" name="hobby" value="traveling"
+                                                <%if(editRecord.hobby.includes("traveling") ){%>
+                                            <%="checked"%>
+                                                <%}%>
+                                                    class="form-check-input">Traveling
+                                        </label>
+                                        <label for="inline-checkbox2" class="form-check-label mr-2 ">
+                                            <input type="checkbox" id="inline-checkbox2" name="hobby" value="cooking"
+                                                <%if(editRecord.hobby.includes("cooking") ){%>
+                                            <%="checked"%>
+                                                <%}%>
+                                                    class="form-check-input">Cooking
+                                        </label>
+                                        <label for="inline-checkbox3" class="form-check-label mr-2 ">
+                                            <input type="checkbox" id="inline-checkbox3" name="hobby" value="reading"
+                                                <%if(editRecord.hobby.includes("reading") ){%>
+                                            <%="checked"%>
+                                                <%}%>
+                                                    class="form-check-input">Reading
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <div class="col col-md-3"><label for="file-input" class=" form-control-label">upload
+                                        File
+                                    </label></div>
+                                <div class="col-12 col-md-9">
+                                    <div class="d-flex">
+                                        <input type="file" id="file-input" name="image" class="form-control-file">
+                                        <img src="<%=editRecord.image%>" height="100" width="100" />
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary btn-sm bg-success text-light p-1">
+                            <i class="fa fa-dot-circle-o"></i> update
+                        </button>
+                        <button type="reset" class="btn btn-danger btn-sm bg-danger text-light p-1">
+                            <i class="fa fa-ban"></i> Reset
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div><!-- .animated -->
+    </div><!-- .content -->
+
+    <div class="clearfix"></div>
+
+    <%- include("footer")%>
