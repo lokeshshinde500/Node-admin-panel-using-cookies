@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1/adminData");
+mongoose.connect("mongodb+srv://lokeshshinde:qSGWIhhn6yxGnT9Z@cluster0.gu04j.mongodb.net/");
 
 const db = mongoose.connection.once("open", (error) => {
     if (error) {
